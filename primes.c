@@ -151,41 +151,41 @@ void calcolo_livelli(long long cycle, long long max_cycle, long long position_pr
     }
 
     // Risultati delle moltiplicazioni con sottrazione senza la scarnitura (la scarnitura sarà risultante dentro a numbers_to_subtract)
-    long long *temp_subtract = init_array(0);
+    long long *expression_results = init_array(0);
 
     // colcolo del numero 'm' da moltiplicare al 'k'
     //start = start * get_value_index((*prime_numbers), position_prime);
 
     // Calcolo delle espressioni
-    temp_subtract = calcola_espressioni(start, (*numbers_to_subtract));
+    expression_results = calcola_espressioni(start, (*numbers_to_subtract));
 
     // Cerco i composti della famiglia del primo che moltiplicherò per lo start successivo
-    elimina_famiglia_successivo(&temp_subtract);
+    elimina_famiglia_successivo(&expression_results);
 
     // Cerco i numeri primi che possono creare dei composti nel prossimo ciclo
-    long long i = trova_i(temp_subtract, start);
+    long long last_to_check = trova_i(expression_results, start);
 
-    // Clona array temp_subtract in killer
-    long long* killer = clone_array(temp_subtract);
+    // Clona array expression_results in to_analyze
+    long long* to_analyze = clone_array(expression_results);
 
     // Eliminazione primo che utilizzerò nel prossimo ciclo per la moltiplicazione a 'start'
-    eliminaElemento(&temp_subtract, 0);
+    eliminaElemento(&expression_results, 0);
 
-    // Eliminazione famiglie dei numeri composti trovati nel ciclo con la 'i' possibili presenti dentro a quelli prodotti, utilizzo dei bool per velocità
-    long long *temp_killer = posizioni_cadidati_non_primi(killer, i);
+    // Eliminazione famiglie dei numeri composti trovati fino a 'last_to_check' presenti dentro a quelli prodotti, utilizzo dei bool per velocità
+    long long *clean_primes = posizioni_cadidati_non_primi(to_analyze, last_to_check);
 
     // Salvataggio all'interno dei numeri primi
-    salva_numeri_primi(temp_killer, killer, prime_numbers);
+    salva_numeri_primi(clean_primes, to_analyze, prime_numbers);
 
     printf("Ricalibrazioni variabili\n");
 
-    *numbers_to_subtract = temp_subtract;
-    temp_subtract = NULL;
+    *numbers_to_subtract = expression_results;
+    expression_results = NULL;
 
     // Chiamata ricorsiva con l'incremento del ciclo e modifica dei parametri successivi
     calcolo_livelli(cycle + 1, max_cycle, position_prime+1, prime_numbers, numbers_to_subtract, start * get_value_index((*prime_numbers), position_prime));
 
-    free(temp_subtract);
+    free(expression_results);
 }
 
 
