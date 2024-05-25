@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 
     clock_t start_time;
     
-    //system("clear");
+    system("clear");
 
     // Inizializzazione di un puntatore che conterrà i numeri primi
     long long *prime_numbers = init_array(0);
