@@ -12,6 +12,8 @@
 
 #define DEFAULT_CYCLE 5
 
+#define NUM_THREADS 4
+
 /**
  * @brief Effettua un calcolo basato sul tipo specificato.
  * 
@@ -34,9 +36,18 @@ long long make_calc(long long a, long long b, long long c, bool type, bool print
 long long* calcola_espressioni(long long start, long long *numbers_to_subtract);
 
 /**
- * @brief Elimina i numeri composti nell'array fornito.
- * 
- * @param expression_results Puntatore all'array da elaborare.
+ * @brief Trova le posizioni degli elementi che appartengono alla famiglia del primo elemento e riduce la dimensione dell'array di conseguenza.
+ *
+ * @param expression_results Array dei risultati delle espressioni calcolate.
+ * @param new_size Puntatore alla variabile che contiene la nuova dimensione dell'array.
+ * @return Array con le posizioni degli elementi da eliminare.
+ */
+bool* posizioni_elimina_famiglia_successivo(long long *expression_results, long long *new_size);
+
+/**
+ * @brief Elimina gli elementi che appartengono alla famiglia del primo elemento nell'array passato.
+ *
+ * @param expression_results Puntatore all'array dei risultati delle espressioni calcolate.
  */
 void elimina_famiglia_successivo(long long **expression_results);
 
@@ -50,9 +61,17 @@ void elimina_famiglia_successivo(long long **expression_results);
 long long trova_i(long long *expression_results, long long start);
 
 /**
+ * @brief Funzione eseguita dai thread per controllare i fattori primi.
+ *
+ * @param arg Puntatore ai dati del thread contenenti l'intervallo di controllo e gli array necessari.
+ * @return Nessun valore di ritorno.
+ */
+void* check_prime_factors(void* arg);
+
+/**
  * @brief Identifica le posizioni dei candidati non primi nell'array passato.
- * 
- * @param expression_results Array di numeri.
+ *
+ * @param expression_results Array dei risultati delle espressioni calcolate.
  * @param max_position Indice fino al quale controllare per i numeri che possono creare dei composti.
  * @return Array con le posizioni dei candidati non primi.
  */

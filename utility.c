@@ -61,7 +61,7 @@ void inserisci_numero(long long **array, long long numero) {
  */
 long long get_value_index(long long *array, long long index) {
     if (index < 0 || index > array[size_array]) {
-        printf("Posizione non valida.\n");
+        printf("APosizione non valida.\n");
         exit(2);
     }
     return array[index + 1];
@@ -102,7 +102,7 @@ void inserisci_numero_senza_allocazione(long long *array, long long numero) {
 void eliminaElemento(long long **array, long long posizione) {
     long long size = (*array)[size_array];
     if (posizione < 0 || posizione >= size) {
-        printf("Posizione non valida.\n");
+        printf("BPosizione non valida.\n");
         exit(2);
     }
     for (long long i = posizione + 1; i < size; i++) {
@@ -126,7 +126,7 @@ void eliminaElemento(long long **array, long long posizione) {
 void inserisci_numero_at_index(long long *array, long long posizione, long long numero) {
     long long size = array[size_array];
     if (posizione < 0 || posizione >= size) {
-        printf("Posizione non valida.\n");
+        printf("CPosizione non valida.\n");
         exit(2);
     }
     array[posizione + 1] = numero;
