@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <pthread.h>
 
 #define PRINT false
 
@@ -51,7 +52,7 @@ long long trova_i(long long *expression_results, long long start);
 /**
  * @brief Identifica le posizioni dei candidati non primi nell'array passato.
  * 
- * @param killer Array di numeri.
+ * @param expression_results Array di numeri.
  * @param max_position Indice fino al quale controllare per i numeri che possono creare dei composti.
  * @return Array con le posizioni dei candidati non primi.
  */

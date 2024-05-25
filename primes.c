@@ -150,11 +150,10 @@ void calcolo_livelli(long long cycle, long long max_cycle, long long position_pr
         return;  // Condizione di base: termina la ricorsione quando raggiungiamo il limite di ciclo
     }
 
+    clock_t start_time = start_timer();
+
     // Risultati delle moltiplicazioni con sottrazione senza la scarnitura (la scarnitura sarà risultante dentro a numbers_to_subtract)
     long long *expression_results = init_array(0);
-
-    // colcolo del numero 'm' da moltiplicare al 'k'
-    //start = start * get_value_index((*prime_numbers), position_prime);
 
     // Calcolo delle espressioni
     expression_results = calcola_espressioni(start, (*numbers_to_subtract));
@@ -181,6 +180,8 @@ void calcolo_livelli(long long cycle, long long max_cycle, long long position_pr
 
     *numbers_to_subtract = expression_results;
     expression_results = NULL;
+
+    printf("Tempo di esecuzione con livello %llu: %f secondi\n", cycle, stop_timer(start_time));
 
     // Chiamata ricorsiva con l'incremento del ciclo e modifica dei parametri successivi
     calcolo_livelli(cycle + 1, max_cycle, position_prime+1, prime_numbers, numbers_to_subtract, start * get_value_index((*prime_numbers), position_prime));
