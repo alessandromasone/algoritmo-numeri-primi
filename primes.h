@@ -12,7 +12,7 @@
 
 #define DEFAULT_CYCLE 5
 
-#define NUM_THREADS 4
+#define NUM_THREADS 2
 
 /**
  * @brief Effettua un calcolo basato sul tipo specificato.
