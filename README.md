@@ -76,3 +76,37 @@ Il progetto utilizza la libreria standard C e non richiede dipendenze esterne.
 ## Contributi
 
 Se desideri contribuire al progetto, sentiti libero di forkare il repository, apportare le modifiche necessarie e aprire una pull request. Sono benvenuti suggerimenti, correzioni di bug e miglioramenti delle funzionalità.
+
+<br><br><br><br><br><br><br><br><br><br>
+
+# Light Version
+
+Questo progetto è un generatore di numeri primi implementato in C, che utilizza una serie di algoritmi per generare e salvare numeri primi in un file di output.
+
+## Requisiti
+
+- Compilatore GCC
+- Sistema operativo Unix-like (Linux, macOS, etc.)
+
+## Come compilare ed eseguire
+
+1. Assicurati di avere il compilatore GCC installato sul tuo sistema.
+2. Clona questo repository sul tuo computer.
+3. Naviga nella directory del progetto.
+4. Esegui il comando `make` per compilare il programma.
+5. Una volta compilato, esegui il programma con `./main` seguito da eventuali opzioni desiderate.
+   Ad esempio: `./main -c 10 -s` per generare i primi 10 cicli di numeri primi e abilitare la stampa delle espressioni.
+
+## Opzioni da riga di comando
+
+- `-c NUM`: Specifica il numero di cicli da eseguire per generare i numeri primi (default: 5).
+- `-s`: Disabilita la stampa delle espressioni durante la generazione dei numeri primi.
+
+## Struttura del codice
+
+Il progetto è organizzato nei seguenti file:
+
+- `main.c`: Il punto di ingresso del programma che gestisce la logica principale.
+- `clock.h` e `clock.c`: Contengono le funzioni per avviare e fermare un timer.
+- `utility.h` e `utility.c`: Contengono funzioni di utilità, come il parsing degli argomenti da riga di comando.
+- `vector.h` e `vector.c`: Definiscono e implementano un'astrazione per la gestione di vettori.
